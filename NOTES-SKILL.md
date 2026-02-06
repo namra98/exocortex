@@ -208,6 +208,44 @@ High-level month overview in 2-3 sentences.
 - Top priorities and goals
 ```
 
+## Git Sync (Multi-Machine)
+
+This repo may be used from multiple machines. Follow these sync rules:
+
+### Before Reading
+Always pull before reading notes to get changes from other machines:
+```
+cd <repo-root> && git pull --rebase --quiet
+```
+If pull fails due to conflicts, attempt auto-merge. If auto-merge fails, keep both versions and alert the user.
+
+### After Writing
+After any write operation (new file, append, task update), auto-commit and push:
+```
+cd <repo-root>
+git add -A
+git commit -m "notes: <descriptive message>"
+git push --quiet
+```
+
+### Merge Strategy
+- **Daily logs**: Different machines typically write to different dates — conflicts are rare. If same-day conflict occurs, keep both entries (they're additive).
+- **Task board**: Conflicts may occur if the same task is modified on two machines. Keep both versions and flag for user review.
+- **Ideas**: Append-only pattern minimizes conflicts. If conflict occurs, concatenate both additions.
+- **Recaps**: These are generated artifacts — regenerate from source files if conflicted.
+
+### Sync Commands
+| User says | Action |
+|-----------|--------|
+| "sync my notes" / "push notes" | Pull latest, commit local changes, push |
+| "commit my notes" / "save to git" | Stage and commit only (no push) |
+| "pull my notes" | Pull latest from remote only |
+
+### Error Handling
+- If push fails (remote has new commits), pull --rebase and retry push once.
+- If rebase has conflicts, abort rebase, do a merge commit instead.
+- If all else fails, report the conflict to the user with the file names.
+
 ## Operational Rules
 
 1. **Check before creating**: Always check if today's daily file or an idea file already exists before creating a new one. Append to existing files — never overwrite.

@@ -6,16 +6,13 @@ Capture ideas, log daily activity, manage tasks, and generate weekly/monthly rec
 
 ## Quick Start
 
-```bash
-# Clone the repo
-git clone git@github.com:namra98/exocortex.git
-cd exocortex
+**One-line install** (clones repo + installs Copilot CLI skill):
 
-# Install Copilot CLI skill (auto-detects repo path)
-.\install.ps1
-
-# Restart Copilot CLI or run /skills reload
+```powershell
+irm https://raw.githubusercontent.com/namra98/exocortex/main/install.ps1 | iex
 ```
+
+That's it. Restart Copilot CLI or run `/skills reload`.
 
 Then in any Copilot CLI session:
 
@@ -48,7 +45,7 @@ exocortex/
 
 ## Multi-Machine Setup
 
-Clone the repo on each machine and run `.\install.ps1`. The skill file is generated with machine-local paths — the repo itself stays portable.
+Run the same one-liner on each machine. The installer clones to `~/exocortex` (or pulls latest if already cloned) and generates a machine-local skill file. All machines auto-sync via git — the AI agent pulls before reading and pushes after writing.
 
 ## License
 
