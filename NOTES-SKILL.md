@@ -229,10 +229,51 @@ git push --quiet
 ```
 
 ### Merge Strategy
-- **Daily logs**: Different machines typically write to different dates — conflicts are rare. If same-day conflict occurs, keep both entries (they're additive).
-- **Task board**: Conflicts may occur if the same task is modified on two machines. Keep both versions and flag for user review.
-- **Ideas**: Append-only pattern minimizes conflicts. If conflict occurs, concatenate both additions.
-- **Recaps**: These are generated artifacts — regenerate from source files if conflicted.
+
+Each file type has a specific conflict resolution approach:
+
+#### Daily Logs (`daily/**/*.md`)
+- **Strategy**: Concatenate both sides
+- Conflicts are rare (different machines usually write different dates)
+- Same-day conflict: combine all entries from both sides, sort by timestamp if `[HH:MM]` prefixes exist, deduplicate identical lines
+- Update the `## Summary` section to reflect the merged content
+
+#### Ideas (`ideas/*.md`)
+- **Strategy**: Merge sections independently
+- **Metadata** (Status, Updated, Domain): use whichever side has the later `Updated:` date
+- **Notes section**: concatenate entries from both sides, deduplicate, sort by date
+- **Next Steps**: union of both sides' action items, deduplicate
+
+#### Task Board (`tasks/active.md`, `tasks/archive.md`)
+- **Strategy**: Intelligent checkbox merge
+- Same task unchecked on one side, checked on the other → keep checked (completion wins)
+- Same task edited differently → keep both versions, prefix the second with `⚠️ CONFLICT:` for user review
+- New tasks added on different sides → keep all (union)
+- Task moved to archive on one side → respect the archive move
+
+#### Recaps (`weekly/*.md`, `monthly/*.md`)
+- **Strategy**: Regenerate from source
+- Do NOT attempt to merge recap conflicts — delete the conflicted file and regenerate it from the underlying daily logs / weekly recaps
+- This always produces a correct result since recaps are derived artifacts
+
+#### Config (`config.md`)
+- **Strategy**: Last writer wins
+- Conflicts are rare; if they occur, take the remote version and notify the user what changed
+
+### Conflict Resolution Procedure
+
+When `git pull --rebase` results in conflicts:
+
+1. Run `git diff --name-only --diff-filter=U` to list conflicted files
+2. For each conflicted file, apply the strategy above based on file path
+3. After resolving, `git add <file>` and `git rebase --continue`
+4. If resolution is uncertain, abort with `git rebase --abort`, do a merge commit instead, and notify the user
+5. After successful resolution, push and inform the user what was merged:
+   ```
+   Synced with remote. Merged changes:
+   - daily/2026/02/2026-02-06.md: combined entries from both machines
+   - tasks/active.md: 2 tasks checked off remotely
+   ```
 
 ### Sync Commands
 | User says | Action |
