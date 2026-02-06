@@ -220,7 +220,7 @@ High-level month overview in 2-3 sentences.
 
 5. **Timestamp mid-day entries**: If the daily file already has entries and the user adds more, prefix new entries with the current time in `[HH:MM]` format.
 
-6. **Cross-reference**: When an idea relates to a task or daily log, mention the file path. Example: `See ideas/cli-dashboard.md`.
+6. **Cross-reference on capture**: When saving a new idea, also append a cross-reference line to today's daily log under "Ideas & Observations": `- 💡 New idea captured: [Idea Title](../ideas/<slug>.md)`. When updating an existing idea, append: `- 💡 Updated idea: [Idea Title](../ideas/<slug>.md)`. This creates a timeline of when ideas were born and evolved, while keeping the idea file as the single source of truth.
 
 7. **Task completion matching**: When the user says "done with X", find the best matching unchecked task. If multiple tasks match, ask the user to clarify. Use fuzzy matching — the user won't remember exact wording.
 
