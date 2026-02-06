@@ -53,8 +53,8 @@ Respond to these natural language patterns. The user won't use exact phrases —
 
 | User says (examples) | Action |
 |----------------------|--------|
-| "weekly recap" | Generate `weekly/YYYY-WNN.md` from this week's daily files |
-| "monthly recap" | Generate `monthly/YYYY-MM.md` from the month's daily files and weekly recaps |
+| "weekly recap" | Generate `weekly/YYYY-WNN.md` from this week's daily files. If a recap already exists for the period, update it rather than creating a duplicate. |
+| "monthly recap" | Generate `monthly/YYYY-MM.md` from the month's daily files and weekly recaps. If a recap already exists, update it. |
 
 ### Maintaining
 
