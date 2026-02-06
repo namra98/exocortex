@@ -106,7 +106,7 @@ Brief 1-2 sentence summary of the day.
 **Status:** exploring | active | parked | done | abandoned
 **Created:** YYYY-MM-DD
 **Updated:** YYYY-MM-DD
-**Domain:** work | personal | learning | cross-domain
+**Domain:** work | personal | learning/study | cross-domain
 
 ## What
 Brief description of the idea.
