@@ -32,8 +32,8 @@ Implement a markdown + git personal knowledge management system operated through
 
 ## Phase Candidates
 <!-- Potential additions identified during planning -->
-- [ ] Sample data: pre-populate a week of example daily logs for recap testing
-- [ ] Configuration file: a `config.md` or YAML for user preferences (auto-commit toggle, default categories)
+- [x] [promoted] Sample data: pre-populate a week of example daily logs for recap testing
+- [x] [promoted] Configuration file: a `config.md` or YAML for user preferences (auto-commit toggle, default categories)
 
 ---
 

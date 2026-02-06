@@ -21,6 +21,7 @@ You are managing a personal knowledge and task tracking system. This file tells 
 ├── tasks/
 │   ├── active.md                  # Running task board (categorized)
 │   └── archive.md                 # Completed/abandoned tasks
+├── config.md                      # User preferences and settings
 └── NOTES-SKILL.md                 # This file
 ```
 
@@ -235,12 +236,14 @@ High-level month overview in 2-3 sentences.
 
 ## Configuration
 
+User preferences are stored in `config.md` at the repo root. Read this file to check current settings before applying defaults.
+
 ### Commit Strategy
 - **Default**: Manual — user says "commit my notes" when ready
-- **Future option**: Auto-commit can be enabled by adding a git hook or scheduled task. This is not implemented in v1 but the system is designed to support it.
+- **Future option**: Auto-commit can be enabled by changing `mode: daily-auto` in `config.md` and adding a git hook or scheduled task. This is not implemented in v1 but the system is designed to support it.
 
 ### Adding Categories
-To add a new task category (e.g., "Side Projects"), edit `tasks/active.md` and `tasks/archive.md` to add a new `## Section` header. The AI will automatically recognize and use new categories.
+To add a new task category (e.g., "Side Projects"), edit `tasks/active.md` and `tasks/archive.md` to add a new `## Section` header, and update the Task Categories list in `config.md`. The AI will automatically recognize and use new categories.
 
 ### Adding Domains
-The daily log template sections can be customized. Add or remove sections as needed — the AI adapts to whatever sections it finds in existing files.
+The daily log template sections can be customized. Add or remove sections in `config.md` under Daily Log Sections, and the AI adapts to whatever sections it finds in existing files.
