@@ -85,7 +85,7 @@ Write the self-contained AI instruction file that enables any Copilot CLI or Cla
 - **`NOTES-SKILL.md`**: Single file at repo root containing:
   - **System overview**: What this repo is, single-user, three domains
   - **Directory structure reference**: Complete tree with descriptions
-  - **Command vocabulary table**: Natural language triggers mapped to actions (capture → create/append, review → read/summarize, maintain → archive/commit)
+  - **Command vocabulary table**: Natural language triggers mapped to actions (capture → create/append, review → read/summarize, search → grep across files, maintain → archive/commit)
   - **File format specifications**: Templates for daily log, idea, task board, weekly recap, monthly recap — each with field descriptions and examples
   - **Operational rules**: 8-10 rules covering file creation, naming conventions, append-vs-overwrite, timestamps, cross-referencing, commit messages, duplicate detection
   - **Configuration section**: Document manual commit as default, describe how auto-commit could be added (future option per FR-009)
@@ -107,6 +107,7 @@ Write the self-contained AI instruction file that enables any Copilot CLI or Cla
 #### Manual Verification:
 - [ ] A fresh Copilot CLI session in `C:\notes` can read the skill file and respond to "show my tasks" correctly
 - [ ] Command vocabulary covers all 7 user stories from Spec.md
+- [ ] Search commands ("search for X", "find notes about X") documented in command vocabulary (SC-009)
 - [ ] Templates match the structure used in the seed daily log (Phase 1)
 - [ ] Rules are unambiguous — no room for AI to guess at file paths or formats
 - [ ] Configuration section documents manual commit and auto-commit future path
